@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyataCommerce Signature Generator</title>
+    <link rel="icon" href="public/favicon-orange.png" type="image/png">
+    <meta name="description" content="Create professional, corporate email signatures instantly with live preview.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="logo">
+            <img src="public/ayata-logo-2color.png" alt="Ayata Logo" class="logo-img">
+        </div>
+        <div class="preview-badge">
+            <div class="dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+            </div>
+            <span class="badge-text">Email Signature Generator</span>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- Left Sidebar: Signature Editor -->
+        <aside class="editor-panel">
+            <div class="editor-header">
+                <h2>Signature Details</h2>
+                <p>Fill in the details below to generate your signature.</p>
+            </div>
+
+            <form id="signature-form" class="editor-form">
+                <!-- Personal Details -->
+                <section class="form-section">
+                    <h3>Personal Details</h3>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="John Doe" value="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title</label>
+                        <input type="text" id="jobTitle" name="jobTitle" placeholder="Software Engineer"
+                            value="Software Engineer">
+                    </div>
+                </section>
+
+                <!-- Contact Info -->
+                <section class="form-section">
+                    <h3>Contact Info</h3>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john.doe@example.com"
+                            value="john.doe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number</label>
+                        <input type="tel" id="mobile" name="mobile" placeholder="+1 234 567 890" value="+1 234 567 890">
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website URL</label>
+                        <input type="url" id="website" name="website" placeholder="www.example.com"
+                            value="www.example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Office Address</label>
+                        <input type="text" id="address" name="address" placeholder="123 Tech Street, City"
+                            value="123 Tech Street, City">
+                    </div>
+                </section>
+
+                <!-- Branding -->
+                <section class="form-section">
+                    <h3>Branding</h3>
+
+                    <div class="primary-branding-group">
+                        <div class="form-group">
+                            <label>Primary Logo</label>
+                            <div class="file-upload" id="primaryLogoUpload">
+                                <input type="file" id="primaryLogo" name="primaryLogo"
+                                    accept="image/png, image/jpeg, image/svg+xml">
+                                <div class="upload-content">
+                                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    <span>Click to upload or drag & drop</span>
+                                    <small>SVG, PNG, JPG (max. 800x400px)</small>
+                                </div>
+                                <img class="image-preview" id="primaryLogoPreview" src="" alt="Primary Logo Preview">
+                                <button type="button" class="remove-image" id="removePrimaryLogo"
+                                    aria-label="Remove image">&times;</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="primaryLogoUrl">Primary Logo Redirect URL</label>
+                            <input type="url" id="primaryLogoUrl" name="primaryLogoUrl"
+                                placeholder="https://www.example.com">
+                        </div>
+                    </div>
+
+                    <div class="secondary-branding-group">
+                        <div class="form-group">
+                            <label>Secondary Logo</label>
+                            <div class="file-upload" id="secondaryLogoUpload">
+                                <input type="file" id="secondaryLogo" name="secondaryLogo"
+                                    accept="image/png, image/jpeg, image/svg+xml">
+                                <div class="upload-content">
+                                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    <span>Click to upload or drag & drop</span>
+                                    <small>SVG, PNG, JPG (max. 800x400px)</small>
+                                </div>
+                                <img class="image-preview" id="secondaryLogoPreview" src=""
+                                    alt="Secondary Logo Preview">
+                                <button type="button" class="remove-image" id="removeSecondaryLogo"
+                                    aria-label="Remove image">&times;</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="secondaryLogoUrl">Secondary Logo Redirect URL</label>
+                            <input type="url" id="secondaryLogoUrl" name="secondaryLogoUrl"
+                                placeholder="https://www.example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="secondaryDescription">Secondary Description / Disclaimer</label>
+                            <textarea id="secondaryDescription" name="secondaryDescription"
+                                placeholder="Confidentiality notice, legal disclaimer, or certifications..."
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </aside>
+
+        <!-- Right Content Area: Live Preview -->
+        <section class="preview-panel">
+            <div class="preview-container">
+                <!-- Simulated Email Client Window -->
+                <div class="email-client-window">
+                    <div class="email-headers">
+                        <div class="header-row">
+                            <span class="header-label">To:</span>
+                            <span class="header-value">client@example.com</span>
+                        </div>
+                        <div class="header-row">
+                            <span class="header-label">Subject:</span>
+                            <span class="header-value">Following up on our recent discussion</span>
+                        </div>
+                    </div>
+                    <div class="email-body">
+                        <p class="email-intro">
+                            Hi there,<br><br>
+                            It was great speaking with you today. Please find my contact details below in case you need
+                            to reach me.<br><br>
+                            Best regards,
+                        </p>
+
+                        <div class="signature-wrapper" id="signatureWrapper">
+                            <!-- Template 1: Two Logos (Default) -->
+                            <table id="signatureTemplate1" class="signature-template" cellpadding="0" cellspacing="0"
+                                border="0"
+                                style="font-family: Arial, sans-serif; line-height: 1.4; color: #333333; max-width: 650px; width: 100%;">
+                                <tr>
+                                    <!-- Left Section: Details & Primary Logo -->
+                                    <td valign="top" style="padding-right: 20px;">
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="padding-bottom: 5px;">
+                                                    <h1 class="preview-full-name"
+                                                        style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">
+                                                        John Doe</h1>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 12px;">
+                                                    <p class="preview-job-title"
+                                                        style="margin: 0; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #F97316; letter-spacing: 0.5px;">
+                                                        SOFTWARE ENGINEER</p>
+                                                </td>
+                                            </tr>
+                                            <tr class="preview-primary-logo-row" style="display: none;">
+                                                <td style="padding-bottom: 15px;">
+                                                    <a class="preview-primary-logo-link" href="https://www.example.com"
+                                                        target="_blank" rel="noopener"
+                                                        style="text-decoration: none; border: 0; outline: none;">
+                                                        <img class="preview-primary-logo-img" src="" alt="Company Logo"
+                                                            width="100"
+                                                            style="display: block; max-width: 120px; height: auto; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: 0;">
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table cellpadding="0" cellspacing="0" border="0"
+                                                        style="font-size: 12px; color: #4B5563;">
+                                                        <tr class="preview-mobile-row">
+                                                            <td style="padding-bottom: 4px;">
+                                                                <table cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td valign="middle"
+                                                                            style="padding-right: 8px; font-size: 0; line-height: 0;">
+                                                                            <img src="data:image/png;base64,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"
+                                                                                alt="Phone" width="16" height="16"
+                                                                                style="display: block; border: 0; outline: none;">
+                                                                        </td>
+                                                                        <td valign="middle"
+                                                                            style="font-size: 12px; color: #4B5563; font-family: 'Inter', Arial, sans-serif; line-height: 1;">
+                                                                            <span class="preview-mobile">+1 234 567
+                                                                                890</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="preview-email-row">
+                                                            <td style="padding-bottom: 4px;">
+                                                                <table cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td valign="middle"
+                                                                            style="padding-right: 8px; font-size: 0; line-height: 0;">
+                                                                            <img src="data:image/png;base64,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"
+                                                                                alt="Email" width="16" height="16"
+                                                                                style="display: block; border: 0; outline: none;">
+                                                                        </td>
+                                                                        <td valign="middle"
+                                                                            style="font-size: 12px; font-family: 'Inter', Arial, sans-serif; line-height: 1;">
+                                                                            <a class="preview-email"
+                                                                                href="mailto:john.doe@example.com"
+                                                                                style="color: #4B5563; text-decoration: none;">john.doe@example.com</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="preview-website-row">
+                                                            <td style="padding-bottom: 4px;">
+                                                                <table cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td valign="middle"
+                                                                            style="padding-right: 8px; font-size: 0; line-height: 0;">
+                                                                            <img src="data:image/png;base64,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"
+                                                                                alt="Web" width="16" height="16"
+                                                                                style="display: block; border: 0; outline: none;">
+                                                                        </td>
+                                                                        <td valign="middle"
+                                                                            style="font-size: 12px; font-family: 'Inter', Arial, sans-serif; line-height: 1;">
+                                                                            <a class="preview-website"
+                                                                                href="https://www.example.com"
+                                                                                style="color: #4B5563; text-decoration: none;">www.example.com</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="preview-address-row">
+                                                            <td>
+                                                                <table cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td valign="middle"
+                                                                            style="padding-right: 8px; font-size: 0; line-height: 0;">
+                                                                            <img src="data:image/png;base64,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"
+                                                                                alt="Address" width="16" height="16"
+                                                                                style="display: block; border: 0; outline: none;">
+                                                                        </td>
+                                                                        <td valign="middle"
+                                                                            style="font-size: 12px; color: #4B5563; font-family: 'Inter', Arial, sans-serif; line-height: 1.2;">
+                                                                            <span class="preview-address">123 Tech
+                                                                                Street, City</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <!-- Divider -->
+                                    <td valign="top" style="width: 2px; background-color: #F97316;"></td>
+
+                                    <!-- Right Section: Secondary Logo & Description -->
+                                    <td valign="top" style="padding-left: 20px;">
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr class="preview-secondary-logo-row" style="display: none;">
+                                                <td style="padding-bottom: 12px;">
+                                                    <a class="preview-secondary-logo-link"
+                                                        href="https://www.example.com" target="_blank" rel="noopener"
+                                                        style="text-decoration: none; border: 0; outline: none;">
+                                                        <img class="preview-secondary-logo-img" src=""
+                                                            alt="Secondary Logo" width="100"
+                                                            style="display: block; max-width: 120px; height: auto; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: 0;">
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr class="preview-secondary-desc-row" style="display: none;">
+                                                <td
+                                                    style="font-size: 11px; color: #6B7280; line-height: 1.5; max-width: 250px; padding-top: 4px;">
+                                                    <p class="preview-secondary-desc"
+                                                        style="margin: 0; white-space: pre-line;"></p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Template 2: Only Primary Logo -->
+                            <table id="signatureTemplate2" class="signature-template" cellpadding="0" cellspacing="0"
+                                border="0"
+                                style="font-family: Arial, sans-serif; line-height: 1.4; color: #333333; max-width: 650px; width: 100%; display: none;">
+                                <tr>
+                                    <!-- Left Section: Details -->
+                                    <td valign="top" style="padding-right: 20px;">
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="padding-bottom: 5px;">
+                                                    <h1 class="preview-full-name"
+                                                        style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">
+                                                        John Doe</h1>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 12px;">
+                                                    <p class="preview-job-title"
+                                                        style="margin: 0; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #F97316; letter-spacing: 0.5px;">
+                                                        SOFTWARE ENGINEER</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table cellpadding="0" cellspacing="0" border="0"
+                                                        style="font-size: 12px; color: #4B5563;">
+                                                        <tr class="preview-mobile-row">
+                                                            <td style="padding-bottom: 4px;">
+                                                                <table cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td valign="middle"
+                                                                            style="padding-right: 8px; font-size: 0; line-height: 0;">
+                                                                            <img src="data:image/png;base64,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"
+                                                                                alt="Phone" width="16" height="16"
+                                                                                style="display: block; border: 0; outline: none;">
+                                                                        </td>
+                                                                        <td valign="middle"
+                                                                            style="font-size: 12px; color: #4B5563; font-family: 'Inter', Arial, sans-serif; line-height: 1;">
+                                                                            <span class="preview-mobile">+1 234 567
+                                                                                890</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="preview-email-row">
+                                                            <td style="padding-bottom: 4px;">
+                                                                <table cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td valign="middle"
+                                                                            style="padding-right: 8px; font-size: 0; line-height: 0;">
+                                                                            <img src="data:image/png;base64,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"
+                                                                                alt="Email" width="16" height="16"
+                                                                                style="display: block; border: 0; outline: none;">
+                                                                        </td>
+                                                                        <td valign="middle"
+                                                                            style="font-size: 12px; font-family: 'Inter', Arial, sans-serif; line-height: 1;">
+                                                                            <a class="preview-email"
+                                                                                href="mailto:john.doe@example.com"
+                                                                                style="color: #4B5563; text-decoration: none;">john.doe@example.com</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="preview-website-row">
+                                                            <td style="padding-bottom: 4px;">
+                                                                <table cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td valign="middle"
+                                                                            style="padding-right: 8px; font-size: 0; line-height: 0;">
+                                                                            <img src="data:image/png;base64,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"
+                                                                                alt="Web" width="16" height="16"
+                                                                                style="display: block; border: 0; outline: none;">
+                                                                        </td>
+                                                                        <td valign="middle"
+                                                                            style="font-size: 12px; font-family: 'Inter', Arial, sans-serif; line-height: 1;">
+                                                                            <a class="preview-website"
+                                                                                href="https://www.example.com"
+                                                                                style="color: #4B5563; text-decoration: none;">www.example.com</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="preview-address-row">
+                                                            <td>
+                                                                <table cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td valign="middle"
+                                                                            style="padding-right: 8px; font-size: 0; line-height: 0;">
+                                                                            <img src="data:image/png;base64,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"
+                                                                                alt="Address" width="16" height="16"
+                                                                                style="display: block; border: 0; outline: none;">
+                                                                        </td>
+                                                                        <td valign="middle"
+                                                                            style="font-size: 12px; color: #4B5563; font-family: 'Inter', Arial, sans-serif; line-height: 1.2;">
+                                                                            <span class="preview-address">123 Tech
+                                                                                Street, City</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <!-- Divider -->
+                                    <td valign="top" style="width: 2px; background-color: #F97316;"></td>
+
+                                    <!-- Right Section: Primary Logo & Motto -->
+                                    <td valign="top" style="padding-left: 20px;">
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr class="preview-primary-logo-row" style="display: none;">
+                                                <td style="padding-bottom: 12px;">
+                                                    <a class="preview-primary-logo-link" href="https://www.example.com"
+                                                        target="_blank" rel="noopener"
+                                                        style="text-decoration: none; border: 0; outline: none;">
+                                                        <img class="preview-primary-logo-img" src="" alt="Company Logo"
+                                                            width="120"
+                                                            style="display: block; max-width: 140px; height: auto; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: 0;">
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div
+                                                        style="font-family: 'Inter', Arial, sans-serif; font-size: 14px; font-weight: bold; font-style: italic; margin-top: 10px; white-space: nowrap;">
+                                                        <span style="color: #F97316;">#Making</span><span
+                                                            style="color: #1F2937;">LifeEasier</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Template 3: Minimalist -->
+                            <table id="signatureTemplate3" class="signature-template" cellpadding="0" cellspacing="0"
+                                border="0"
+                                style="font-family: Arial, sans-serif; line-height: 1.4; color: #333333; max-width: 650px; width: 100%; display: none;">
+                                <tr>
+                                    <td>
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="padding-bottom: 5px;">
+                                                    <h1 class="preview-full-name"
+                                                        style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">
+                                                        John Doe</h1>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 10px;">
+                                                    <p class="preview-job-title"
+                                                        style="margin: 0; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #F97316; letter-spacing: 0.5px;">
+                                                        SOFTWARE ENGINEER</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div
+                                                        style="font-family: 'Inter', Arial, sans-serif; font-size: 14px; font-weight: bold; font-style: italic; margin-top: 5px; white-space: nowrap;">
+                                                        <span style="color: #F97316;">#Making</span><span
+                                                            style="color: #1F2937;">LifeEasier</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Selector -->
+                <div class="template-selector">
+                    <h3 class="selector-title">Select Template Style</h3>
+                    <div class="template-grid">
+                        <div class="template-card active" data-template="1">
+                            <div class="card-mockup mockup-1">
+                                <div class="mockup-left">
+                                    <div class="mockup-line title"></div>
+                                    <div class="mockup-line subtitle"></div>
+                                    <div class="mockup-circle logo-small"></div>
+                                    <div class="mockup-line contact"></div>
+                                    <div class="mockup-line contact"></div>
+                                </div>
+                                <div class="mockup-divider"></div>
+                                <div class="mockup-right">
+                                    <div class="mockup-circle logo-large"></div>
+                                    <div class="mockup-line text"></div>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-name">Two Logos</span>
+                            </div>
+                            <div class="checkmark-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="template-card" data-template="2">
+                            <div class="card-mockup mockup-2">
+                                <div class="mockup-left">
+                                    <div class="mockup-line title"></div>
+                                    <div class="mockup-line subtitle"></div>
+                                    <div class="mockup-line contact"></div>
+                                    <div class="mockup-line contact"></div>
+                                    <div class="mockup-line contact"></div>
+                                </div>
+                                <div class="mockup-divider"></div>
+                                <div class="mockup-right">
+                                    <div class="mockup-circle logo-large"></div>
+                                    <div class="mockup-line text brand"></div>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-name">Primary Logo</span>
+                            </div>
+                            <div class="checkmark-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="template-card" data-template="3">
+                            <div class="card-mockup mockup-3">
+                                <div class="mockup-full">
+                                    <div class="mockup-line title"></div>
+                                    <div class="mockup-line subtitle"></div>
+                                    <div class="mockup-line text brand"></div>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-name">Minimalist</span>
+                            </div>
+                            <div class="checkmark-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="btnCopy" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy Signature
+                    </button>
+                </div>
+
+                <!-- Footer Copyright -->
+                <footer class="app-footer">
+                    <p>&copy; 2026 ayatacommerce. All rights reserved.</p>
+                </footer>
+
+                <div id="toastMessage" class="toast">Signature copied to clipboard!</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
