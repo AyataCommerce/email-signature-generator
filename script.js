@@ -366,10 +366,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clean active signature table template layout for clip packaging
     function getCleanActiveSignatureHTML() {
         const activeTable = document.getElementById(`signatureTemplate${activeTemplate}`);
-        let signatureHTML = activeTable.outerHTML;
+        const clone = activeTable.cloneNode(true);
 
-        // Strip template-specific wrapper classes/IDs and hidden style rules
-        signatureHTML = signatureHTML.replace(/style="[^"]*display:\s*none;?[^"]*"/gi, '');
+        // Remove hidden rows entirely so email clients don't render them
+        clone.querySelectorAll('[style]').forEach(el => {
+            if (el.style.display === 'none') el.remove();
+        });
+
+        let signatureHTML = clone.outerHTML;
         signatureHTML = signatureHTML.replace(/id="signatureTemplate\d"/gi, '');
         signatureHTML = signatureHTML.replace(/class="signature-template"/gi, '');
 
