@@ -85,12 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
         jobTitle: 'Software Engineer',
         email: 'john.doe@example.com',
         mobile: '+1 234 567 890',
-        website: 'www.example.com',
-        linkedin: 'www.linkedin.com',
+        website: 'https://www.ayatacommerce.com/',
+        linkedin: 'https://www.linkedin.com/company/ayatacommerce/',
         address: '123 Tech Street, City',
         secondaryDescription: 'This email and any attachments are confidential and intended solely for the use of the individual or entity to whom they are addressed.',
-        primaryLogoUrl: 'https://www.example.com',
-        secondaryLogoUrl: 'https://www.example.com'
+        primaryLogoUrl: 'https://www.ayatacommerce.com',
+        secondaryLogoUrl: 'https://ayatacommerce.com/press-release/ayatacommerce-receives-the-kings-award-for-enterprise-in-international-trade/'
     };
 
     // --- Live Update Logic ---
@@ -132,10 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (val && !val.startsWith('http://') && !val.startsWith('https://')) {
                 href = 'https://' + val;
             }
+            const displayVal = val.replace(/^https?:\/\//, '').replace(/\/$/, '');
             preview.website.forEach((el, idx) => {
                 const row = preview.websiteRow[idx];
                 if (val) {
-                    el.textContent = val;
+                    el.textContent = displayVal;
                     el.href = href;
                     if (row) row.style.display = '';
                 } else {
@@ -153,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             preview.linkedin.forEach((el, idx) => {
                 const row = preview.linkedinRow[idx];
                 if (val) {
-                    el.textContent = val;
+                    el.textContent = 'Follow us on LinkedIn';
                     el.href = href;
                     if (row) row.style.display = '';
                 } else {
@@ -426,6 +427,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+    async function preloadLogo(url, configObject) {
+        try {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const file = new File([blob], url.split('/').pop(), { type: blob.type });
+            handleImageUpload(file, configObject);
+        } catch (e) {
+            console.warn('Could not preload logo:', url, e);
+        }
+    }
+
     // --- Initialize ---
     setupInputListeners();
     setupDragAndDrop(primaryLogo);
@@ -435,4 +447,12 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let key in inputs) {
         inputs[key].dispatchEvent(new Event('input'));
     }
+
+    // Trigger logo URL inputs so pre-filled hrefs are applied
+    inputs.primaryLogoUrl.dispatchEvent(new Event('input'));
+    inputs.secondaryLogoUrl.dispatchEvent(new Event('input'));
+
+    // Pre-load default logos
+    preloadLogo('public/ayata-logo-2color.png', primaryLogo);
+    preloadLogo('public/KingsAward-logo.jpg', secondaryLogo);
 });
