@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         email: document.getElementById('email'),
         mobile: document.getElementById('mobile'),
         website: document.getElementById('website'),
+        linkedin: document.getElementById('linkedin'),
         address: document.getElementById('address'),
         secondaryDescription: document.getElementById('secondaryDescription'),
         primaryLogoUrl: document.getElementById('primaryLogoUrl'),
@@ -30,10 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
         email: document.querySelectorAll('.preview-email'),
         mobile: document.querySelectorAll('.preview-mobile'),
         website: document.querySelectorAll('.preview-website'),
+        linkedin: document.querySelectorAll('.preview-linkedin'),
         address: document.querySelectorAll('.preview-address'),
         emailRow: document.querySelectorAll('.preview-email-row'),
         mobileRow: document.querySelectorAll('.preview-mobile-row'),
         websiteRow: document.querySelectorAll('.preview-website-row'),
+        linkedinRow: document.querySelectorAll('.preview-linkedin-row'),
         addressRow: document.querySelectorAll('.preview-address-row'),
         secondaryDesc: document.querySelectorAll('.preview-secondary-desc'),
         secondaryDescRow: document.querySelectorAll('.preview-secondary-desc-row')
@@ -83,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         email: 'john.doe@example.com',
         mobile: '+1 234 567 890',
         website: 'www.example.com',
+        linkedin: 'www.linkedin.com',
         address: '123 Tech Street, City',
         secondaryDescription: 'This email and any attachments are confidential and intended solely for the use of the individual or entity to whom they are addressed.',
         primaryLogoUrl: 'https://www.example.com',
@@ -130,6 +134,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             preview.website.forEach((el, idx) => {
                 const row = preview.websiteRow[idx];
+                if (val) {
+                    el.textContent = val;
+                    el.href = href;
+                    if (row) row.style.display = '';
+                } else {
+                    if (row) row.style.display = 'none';
+                }
+            });
+        });
+
+        inputs.linkedin.addEventListener('input', () => {
+            let val = inputs.linkedin.value.trim();
+            let href = val;
+            if (val && !val.startsWith('http://') && !val.startsWith('https://')) {
+                href = 'https://' + val;
+            }
+            preview.linkedin.forEach((el, idx) => {
+                const row = preview.linkedinRow[idx];
                 if (val) {
                     el.textContent = val;
                     el.href = href;
