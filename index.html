@@ -303,6 +303,19 @@
                   </button>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="tertiaryLogoUrl"
+                  >Tertiary Logo Redirect URL</label
+                >
+                <input
+                  type="url"
+                  id="tertiaryLogoUrl"
+                  name="tertiaryLogoUrl"
+                  placeholder="https://www.example.com"
+                  value="https://www.example.com"
+                />
+              </div>
             </div>
           </section>
         </form>
@@ -606,19 +619,31 @@
                       <table cellpadding="0" cellspacing="0" border="0">
                         <tr>
                           <td valign="middle" style="padding-right: 12px">
-                            <img
-                              class="preview-tertiary-logo-img"
-                              src=""
-                              alt="ISOQAR UKAS Certification"
-                              width="140"
+                            <a
+                              class="preview-tertiary-logo-link"
+                              href="https://www.example.com"
+                              target="_blank"
+                              rel="noopener"
                               style="
-                                display: block;
-                                max-width: 150px;
-                                height: auto;
-                                outline: none;
+                                text-decoration: none;
                                 border: 0;
+                                outline: none;
                               "
-                            />
+                            >
+                              <img
+                                class="preview-tertiary-logo-img"
+                                src=""
+                                alt="ISOQAR UKAS Certification"
+                                width="140"
+                                style="
+                                  display: block;
+                                  max-width: 150px;
+                                  height: auto;
+                                  outline: none;
+                                  border: 0;
+                                "
+                              />
+                            </a>
                           </td>
                           <td
                             valign="middle"

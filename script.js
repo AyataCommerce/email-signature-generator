@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         linkedin: document.getElementById('linkedin'),
         address: document.getElementById('address'),
         primaryLogoUrl: document.getElementById('primaryLogoUrl'),
-        secondaryLogoUrl: document.getElementById('secondaryLogoUrl')
+        secondaryLogoUrl: document.getElementById('secondaryLogoUrl'),
+        tertiaryLogoUrl: document.getElementById('tertiaryLogoUrl')
     };
 
     // DOM Elements - Preview Targets (All matching elements across templates)
@@ -192,6 +193,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 val = 'https://' + val;
             }
             const links = document.querySelectorAll('.preview-secondary-logo-link');
+            links.forEach(link => {
+                link.href = val || 'https://www.example.com';
+            });
+        });
+
+        inputs.tertiaryLogoUrl.addEventListener('input', () => {
+            let val = inputs.tertiaryLogoUrl.value.trim();
+            if (val && !val.startsWith('http://') && !val.startsWith('https://')) {
+                val = 'https://' + val;
+            }
+            const links = document.querySelectorAll('.preview-tertiary-logo-link');
             links.forEach(link => {
                 link.href = val || 'https://www.example.com';
             });
