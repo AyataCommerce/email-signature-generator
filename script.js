@@ -124,7 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
             updateField(inputs.email, preview.email, preview.emailRow, '', '', true, 'mailto:');
         });
 
-        inputs.mobile.addEventListener('input', () => updateField(inputs.mobile, preview.mobile, preview.mobileRow));
+        inputs.mobile.addEventListener('input', () => {
+            updateField(inputs.mobile, preview.mobile, preview.mobileRow);
+            const tel = inputs.mobile.value.replace(/[^\d+]/g, '');
+            preview.mobile.forEach(el => { el.href = 'tel:' + tel; });
+        });
 
         inputs.website.addEventListener('input', () => {
             let val = inputs.website.value.trim();
