@@ -58,6 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
         rowClass: 'preview-secondary-logo-row'
     };
 
+    const tertiaryLogo = {
+        input: document.getElementById('tertiaryLogo'),
+        container: document.getElementById('tertiaryLogoUpload'),
+        preview: document.getElementById('tertiaryLogoPreview'),
+        removeBtn: document.getElementById('removeTertiaryLogo'),
+        imgClass: 'preview-tertiary-logo-img',
+        rowClass: 'preview-secondary-logo-row'
+    };
+
     // DOM Elements - Action Buttons & Switcher
     const btnCopy = document.getElementById('btnCopy');
     const toastMessage = document.getElementById('toastMessage');
@@ -433,6 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupInputListeners();
     setupDragAndDrop(primaryLogo);
     setupDragAndDrop(secondaryLogo);
+    setupDragAndDrop(tertiaryLogo);
 
     // Trigger initial update to render default values correctly
     for (let key in inputs) {
@@ -446,4 +456,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pre-load default logos
     preloadLogo('public/ayata-logo-2color.png', primaryLogo);
     preloadLogo('public/KingsAward-logo.jpg', secondaryLogo);
+    preloadLogo('public/Ayata ISOQAR UKAS joint logo navy.png', tertiaryLogo);
 });
