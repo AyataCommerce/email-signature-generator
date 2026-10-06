@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         website: document.getElementById('website'),
         linkedin: document.getElementById('linkedin'),
         address: document.getElementById('address'),
-        secondaryDescription: document.getElementById('secondaryDescription'),
         primaryLogoUrl: document.getElementById('primaryLogoUrl'),
         secondaryLogoUrl: document.getElementById('secondaryLogoUrl')
     };
@@ -37,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileRow: document.querySelectorAll('.preview-mobile-row'),
         websiteRow: document.querySelectorAll('.preview-website-row'),
         linkedinRow: document.querySelectorAll('.preview-linkedin-row'),
-        addressRow: document.querySelectorAll('.preview-address-row'),
-        secondaryDesc: document.querySelectorAll('.preview-secondary-desc'),
-        secondaryDescRow: document.querySelectorAll('.preview-secondary-desc-row')
+        addressRow: document.querySelectorAll('.preview-address-row')
     };
 
     // DOM Elements - File Uploads Configurations
@@ -168,20 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         inputs.address.addEventListener('input', () => updateField(inputs.address, preview.address, preview.addressRow));
-
-        inputs.secondaryDescription.addEventListener('input', () => {
-            const val = inputs.secondaryDescription.value;
-            preview.secondaryDesc.forEach((el, idx) => {
-                const row = preview.secondaryDescRow[idx];
-                if (val.trim()) {
-                    el.innerHTML = escapeHTML(val).replace(/\n/g, '<br>');
-                    if (row) row.style.display = '';
-                } else {
-                    if (row) row.style.display = 'none';
-                    el.innerHTML = '';
-                }
-            });
-        });
 
         inputs.primaryLogoUrl.addEventListener('input', () => {
             let val = inputs.primaryLogoUrl.value.trim();
