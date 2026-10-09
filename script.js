@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetRows = document.querySelectorAll('.' + configObject.rowClass);
 
             targetImgs.forEach(img => img.src = compressedBase64);
-            targetRows.forEach(row => row.style.display = '');
+            targetRows.forEach(row => row.style.display = row.dataset.display || '');
         });
     }
 
