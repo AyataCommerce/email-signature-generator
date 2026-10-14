@@ -516,7 +516,7 @@ body {
 
 .template-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1.25rem;
     width: 100%;
 }
@@ -595,6 +595,11 @@ body {
     align-items: center;
     justify-content: center;
     gap: 4px;
+}
+
+.mockup-4 .mockup-right {
+    flex-direction: row;
+    width: auto;
 }
 
 .mockup-full {

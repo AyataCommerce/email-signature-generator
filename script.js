@@ -357,6 +357,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (templateId === '3') {
                 formSections.contact.classList.add('disabled-section');
                 formSections.branding.classList.add('disabled-section');
+            } else if (templateId === '4') {
+                formSections.contact.classList.remove('disabled-section');
+                formSections.branding.classList.remove('disabled-section');
+                formSections.primaryBrandingGroup.classList.add('disabled-section');
+                formSections.secondaryBrandingGroup.classList.remove('disabled-section');
             }
         });
     });
