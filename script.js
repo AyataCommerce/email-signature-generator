@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         secondaryBrandingGroup: document.querySelector('.secondary-branding-group')
     };
 
-    let activeTemplate = '1';
+    let activeTemplate = '7';
 
     // Default Values (for initialization)
     const defaults = {
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // 3. Dynamic layout-aware sidebar section fading collapse
-            if (templateId === '1' || templateId === '5') {
+            if (templateId === '7') {
                 formSections.contact.classList.remove('disabled-section');
                 formSections.branding.classList.remove('disabled-section');
                 formSections.primaryBrandingGroup.classList.remove('disabled-section');
@@ -357,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (templateId === '3') {
                 formSections.contact.classList.add('disabled-section');
                 formSections.branding.classList.add('disabled-section');
-            } else if (templateId === '4' || templateId === '6') {
+            } else if (templateId === '4') {
                 formSections.contact.classList.remove('disabled-section');
                 formSections.branding.classList.remove('disabled-section');
                 formSections.primaryBrandingGroup.classList.add('disabled-section');
